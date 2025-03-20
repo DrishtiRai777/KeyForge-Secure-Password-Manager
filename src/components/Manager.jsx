@@ -144,7 +144,7 @@ const Manager = () => {
     {/* Background */}
     
 
-      <div className="mycontainer bg-black text-white">
+      <div className="mycontainer min-h-screen bg-gradient-to-br from-black via-[#1a1a2e] to-[#16213e] text-white">
         {/* Title */}
         <h1 className="text-4xl font-bold text-center">
           <span>Key</span>
