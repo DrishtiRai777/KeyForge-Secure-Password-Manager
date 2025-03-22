@@ -10,11 +10,11 @@ const Login = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     
-    const response = await fetch("/login", {
+    const response = await fetch("http://localhost:3000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
-    });
+    })
 
     const data = await response.json();
     if(data.error) {
@@ -47,7 +47,7 @@ const Login = () => {
 
       {/* Links */}
       <Link to="/totp/forgetPswd">Forget Password</Link>
-      <Link to="/register">Register</Link>
+      <Link to="/auth/register">Register</Link>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 export default function EnableTOTP() {
     const [qrCodeUrl, setQrCodeUrl] = useState("");
@@ -55,6 +56,11 @@ export default function EnableTOTP() {
                 />
                 <button type="submit">Verify & Enable TOTP</button>
             </form>
+
+
+            <p>Don&apos;t want to set up yet ? There is no other way to reset password and enter.</p>
+            <Link to="/auth/login">Skip Anyway</Link>
+
         </div>
     );
 }
