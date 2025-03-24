@@ -244,7 +244,7 @@ const Manager = () => {
                   
                   <td className="py-2 border text-center text-white" >
                     <div className="flex items-center justify-between">
-                      <span className="ml-3">{item.password}</span>
+                      <span className="ml-3">{'*'.repeat(item.password.length)}</span>
                       <button className="mx-4 hover:bg-cyan-100 rounded-md align-middle" onClick={() => { copyText(item.password) }}>
                         <img className="w-5" src="icons/icons8-copy-30 (1).png" alt="img" />
                       </button>
