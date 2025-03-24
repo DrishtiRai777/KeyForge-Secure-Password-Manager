@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register, login } = require('../controllers/authController');
+const { register, login, setUp2FA } = require('../controllers/authController');
 const Token = require('../models/tokenSchema');
 const {checkAuthMiddleware, validateRefreshToken} = require("../middleware/accessAuthRoutes"); 
 
@@ -25,7 +25,7 @@ router.post("/logout", validateRefreshToken, async (req, res) => {
     }
 });
 
-
+router.post('/issue-auth-token', setUp2FA);
 router.post('/register', register);
 router.post('/login', login);
 

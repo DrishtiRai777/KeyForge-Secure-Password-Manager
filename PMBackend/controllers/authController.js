@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/userSchema');
 const { generateAccessToken, generateRefreshToken, generateUserIdToken } = require('../utils/generateTokens');
 const Token = require('../models/tokenSchema');
+const Totp = require('../models/totpSchema');
 
 const register = async (req, res) => {
     try {
@@ -79,4 +80,36 @@ const saveToken = async (userId, refreshToken) => {
     await newToken.save();
 };
 
-module.exports = { register, login };
+const setUp2FA = async (req, res) => {
+    try {
+        const {email} = req.body;
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const totpExist = await Totp.findOne({userId: user._id});
+        if(totpExist) {
+            return res.status(400).json({error: 'TOTP already set up'});
+        }
+
+        // Generate JWT Token
+        const payload = { id: user._id };
+        const userIdToken = generateUserIdToken(payload);
+
+        res.cookie("auth_token", userIdToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", 
+            sameSite: "Strict",
+            maxAge: 3600000,
+        });
+
+        return res.json({userIdToken});
+
+    } catch (error) {
+        console.error("Error issuing auth token:", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+module.exports = { register, login, setUp2FA };

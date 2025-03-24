@@ -77,6 +77,7 @@ const Register = () => {
 
       {/* Links */}
       <Link to="/login">Login</Link>
+      <Link to="/2fa/set2fa">Set Up 2FA</Link>
     </div>
   )
 }

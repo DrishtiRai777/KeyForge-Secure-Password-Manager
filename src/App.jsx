@@ -12,6 +12,7 @@ import Login from "./auth/Login"
 import Enable2FA from "./auth/Enable2FA"
 import PswdReset from "./auth/PswdReset"
 import ForgetPswd from "./auth/ForgetPswd"
+import TwoFactorSetupAgain from "./auth/TwoFactorSetupAgain"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
     {
       path: "/2fa/forgetPswd",
       element: <><ForgetPswd/></>
+    },
+    {
+      path: "/2fa/set2fa",
+      element: <><TwoFactorSetupAgain/></>
     }
   ])
   return (
