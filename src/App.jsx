@@ -9,6 +9,9 @@ import GenNavbar from "./components/GeneralNavbar"
 import HomeNavbar from "./components/HomeNavbar"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
+import Enable2FA from "./auth/Enable2FA"
+import PswdReset from "./auth/PswdReset"
+import ForgetPswd from "./auth/ForgetPswd"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 function App() {
@@ -41,6 +44,18 @@ function App() {
       path: "/login",
       element: <><Login/></>
     },
+    {
+      path: "/2fa",
+      element: <><Enable2FA/></>
+    },
+    {
+      path: "/2fa/reset-password",
+      element: <><PswdReset/></>
+    }, 
+    {
+      path: "/2fa/forgetPswd",
+      element: <><ForgetPswd/></>
+    }
   ])
   return (
     <>

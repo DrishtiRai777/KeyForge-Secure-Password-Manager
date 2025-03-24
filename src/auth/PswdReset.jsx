@@ -16,10 +16,10 @@ export default function PswdReset() {
             return;
         }
 
-        const response = await fetch("/totp/update-password", {
+        const response = await fetch("http://localhost:3000/2fa/update-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token, password })
+            body: JSON.stringify({ token, password, confirmPassword })
         });
 
         const data = await response.json();

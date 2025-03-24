@@ -1,39 +1,42 @@
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function EnableTOTP() {
     const [qrCodeUrl, setQrCodeUrl] = useState("");
     const [totpCode, setTotpCode] = useState("");
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch QR code URL when component mounts
-        async function fetchQrCode() {
-            const response = await fetch("/totp/get-qrcode"); 
-            const data = await response.json();
-            if (data.qrCodeUrl) {
-                setQrCodeUrl(data.qrCodeUrl);
-            } else {
-                setError("Failed to load QR code");
-            }
-        }
-        fetchQrCode();
+        fetch("http://localhost:3000/2fa/", { 
+            method: "GET", 
+            credentials: "include"  
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("QR Code Data Received:", data);
+            setQrCodeUrl(data.qrCodeUrl);
+        })
+        .catch(err => console.error("QR Fetch Error:", err));
     }, []);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const response = await fetch("/totp/verify-totp", {
+        const response = await fetch("http://localhost:3000/2fa/verify-totp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: "include",
             body: JSON.stringify({ totpCode })
         });
-
+    
         const data = await response.json();
         if (data.error) {
             setError(data.error);
         } else {
-            alert("TOTP enabled successfully!"); 
+            alert("TOTP enabled successfully!...Redirecting to login"); 
+            navigate("/login");
         }
     };
 
@@ -59,7 +62,7 @@ export default function EnableTOTP() {
 
 
             <p>Don&apos;t want to set up yet ? There is no other way to reset password and enter.</p>
-            <Link to="/auth/login">Skip Anyway</Link>
+            <Link to="/login">Skip Anyway</Link>
 
         </div>
     );

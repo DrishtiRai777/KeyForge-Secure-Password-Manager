@@ -9,22 +9,32 @@ const register = async (req, res) => {
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
-            return res.status(400).json({ error: 'User already exists' });
+            return res.status(400).json({ error: "User already exists" });
         }
 
+        // Hash password before saving
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
 
+        // Generate JWT Token
         const payload = { id: newUser._id };
         const userIdToken = generateUserIdToken(payload);
-        res.cookie('auth_token', userIdToken, { httpOnly: true, secure: false });
-        res.status(201).json({ message: 'User registered', userIdToken });
+
+        res.cookie("auth_token", userIdToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", 
+            sameSite: "Strict",
+            maxAge: 3600000, // 1 hour
+        });
+
+        res.status(201).json({ message: "User registered successfully", userIdToken });
     } catch (error) {
-        console.error('Error registering user:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error("Error registering user:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
+
 
 const login = async (req, res) => {
     try {

@@ -46,8 +46,8 @@ const Login = () => {
       </form>
 
       {/* Links */}
-      <Link to="/totp/forgetPswd">Forget Password</Link>
-      <Link to="/auth/register">Register</Link>
+      <Link to="/2fa/forgetPswd">Forget Password</Link>
+      <Link to="/register">Register</Link>
     </div>
   )
 }
