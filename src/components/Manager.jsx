@@ -1,18 +1,32 @@
 import { useRef, useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
 const Manager = () => {
   const ref = useRef()
   const passwordRef = useRef()
   const [form, setform] = useState({site: "", username: "", password: ""});
-  const [passwordArray, setpasswordArray] = useState([])
+  const [passwordArray, setpasswordArray] = useState([]);
 
-  const getPassword = async() => {
-    let req = await fetch("http://localhost:3000/")
-    let passwords = await req.json()
-    setpasswordArray(passwords)
-  }
+
+  const getPassword = async () => {
+    try {
+      let req = await fetch("http://localhost:3000/", { credentials: "include" });
+      let passwords = await req.json();
+
+      if (req.status === 401) {
+        setpasswordArray(-1); 
+      } else if (Array.isArray(passwords)) {
+        setpasswordArray(passwords); 
+      } else {
+        setpasswordArray([]); 
+      }
+    } catch (error) {
+      console.error("Fetch Error:", error);
+      setpasswordArray([]); 
+    }
+  };
 
   // load the password array when page is reloaded
   useEffect(() => {
@@ -186,11 +200,17 @@ const Manager = () => {
           <h1 className="my-2 mt-10 text-slate-500">Passwords</h1>
 
           {/* Table */}
+          {/* Unauthorized */}
+          {passwordArray === -1 && <button className="bg-sky-400 flex justify-center items-center hover:bg-sky-300 rounded-md px-1 py-1 gap-1 w-28 h-10"><Link to="/login">Log In</Link></button>}
+
           {/* No passwords */}
-          {passwordArray.length === 0 && <div className="p-4">No passwords to show</div>}
+          {passwordArray !== null && passwordArray !== -1 && passwordArray.length === 0 && (
+            <div className="p-4">No passwords to show</div>
+          )}
+
           {/* Passwords are there! */}
-          {passwordArray.length != 0 && ( 
-            <div className="rounded-md overflow-hidden border-2 ">
+          {passwordArray !== null && passwordArray !== -1 && passwordArray.length !== 0 && ( 
+              <div className="rounded-md overflow-hidden border-2 ">
               <table className="table-auto w-full rounded-md border">
               <thead className="text-center">
                 <tr>
