@@ -1,6 +1,27 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/auth/logout", {
+        method: "POST",
+        credentials: "include", 
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Logged out successfully");
+        navigate("/login"); // Redirect to login page
+      } else {
+        console.error("Logout failed:", data.error);
+      }
+    } catch (error) {
+      console.error("Logout request failed:", error);
+    }
+  };
+
   return (
     <nav className="w-96 h-screen bg-black text-white">
       <div className="flex flex-col items-center px-4 py-5 h-full mx-7 my-7 rounded-lg">
@@ -88,7 +109,7 @@ const Navbar = () => {
         </ul>
 
         {/* Buttons */}
-        <button className="flex items-center gap-4 bg-sky-400 w-32 p-2 rounded-md hover:bg-sky-300 mt-6">
+        <button onClick={handleLogout} className="flex items-center gap-4 bg-sky-400 w-32 p-2 rounded-md hover:bg-sky-300 mt-6">
           <img src="icons/log-out.png" alt="Logout" className="w-6 h-6" />
           Log-out
         </button>
