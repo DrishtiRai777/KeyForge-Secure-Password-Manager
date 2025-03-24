@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
@@ -6,6 +6,27 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  // Check if user is already logged in before rendering
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/auth/login", {
+          method: "GET", 
+          credentials: "include",
+        });
+
+        const data = await response.json();
+        if (response.ok && data.authenticated) {
+          navigate("/password"); // Redirect if already logged in
+        }
+      } catch (error) {
+        console.error("Login check failed:", error);
+      }
+    };
+
+    checkLoginStatus();
+  }, [navigate]);
 
   const handleSubmit = async(e) => {
     e.preventDefault();
