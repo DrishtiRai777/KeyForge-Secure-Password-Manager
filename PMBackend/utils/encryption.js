@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const Buffer = require('buffer');
 const SECRET_KEY = process.env.ENCRYPTION_KEY;  
 const IV_LENGTH = 16;  
 
@@ -8,7 +9,7 @@ const encrypt = (text) => {
     const cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(SECRET_KEY, 'utf-8'), iv);
     let encrypted = cipher.update(text, 'utf8', 'hex');
     encrypted += cipher.final('hex');
-    return iv.toString('hex') + ':' + encrypted;  // Combine IV and encrypted text
+    return iv.toString('hex') + ':' + encrypted;  
 };
 
 // Decrypt function
