@@ -55,8 +55,9 @@ const Manager = () => {
   
       // Delete any existing password with the same ID (if editing)
       if (form.id) {
-        await fetch("http://localhost:3000/", { 
+        await fetch("http://localhost:3000/",{ 
           method: "DELETE", 
+          credentials: "include",
           headers: { "Content-Type": "application/json" }, 
           body: JSON.stringify({ id: form.id }) 
         });
@@ -66,6 +67,7 @@ const Manager = () => {
       setpasswordArray([...passwordArray, newPassword]);
       await fetch("http://localhost:3000/", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPassword),
       });
@@ -101,7 +103,13 @@ const Manager = () => {
     if(c) {
       setpasswordArray(passwordArray.filter(item => item.id !== id))
       // localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item => item.id !== id)))
-      await fetch("http://localhost:3000", {method: "DELETE", headers: {"Content-Type": "application/json"}, body: JSON.stringify({id})})
+      await fetch("http://localhost:3000/", {
+      method: "DELETE", 
+      headers: {"Content-Type": "application/json"}, 
+      credentials: "include",
+      body: JSON.stringify({id})
+      });
+      
       toast('Password deleted!', {
         position: "top-right",
         autoClose: 5000, // Adjust auto-close delay (e.g., 2000ms = 2 seconds)
