@@ -1,24 +1,19 @@
 const Password = require('../models/passwordSchema');
-const CryptoJS = require("crypto-js");
-require("dotenv").config();
-// const secretKey = "123";
-console.log("Encryption Key:", process.env.ENCRYPTION_KEY);
-const secretKey = process.env.ENCRYPTION_KEY; // Load key
+const {encryptPassword, decryptPassword} = require('../utils/encryption')
 
 // Get all Passwords
 const getPassword = async (req, res) => {
     try {
         const passwords = await Password.find({});
-
-        // Decrypt each password
         const decryptedPasswords = passwords.map((entry) => ({
             ...entry._doc,
-            password: CryptoJS.AES.decrypt(entry.password, secretKey).toString(CryptoJS.enc.Utf8),
+            password: decryptPassword(entry.password),
         }));
 
         res.json(decryptedPasswords);
     } catch (error) {
-        res.status(500).json({ message: "Error fetching passwords", error });
+        console.error("Error in getPassword:", error); 
+        res.status(500).json({ message: "Error fetching passwords", error: error.message });
     }
 };
 
@@ -27,9 +22,7 @@ const getPassword = async (req, res) => {
 const addPassword = async (req, res) => {
     try {
         const { site, username, password, id } = req.body;
-
-        // Encrypt password before saving
-        const encryptedPassword = CryptoJS.AES.encrypt(password, secretKey).toString();
+        const encryptedPassword = encryptPassword(password); // Encrypt before saving
 
         const newPassword = new Password({ site, username, password: encryptedPassword, id });
         const savedResult = await newPassword.save();
@@ -39,6 +32,7 @@ const addPassword = async (req, res) => {
         res.status(500).json({ message: "Error saving password", error });
     }
 };
+
 
 // Remove password
 const removePassword = async(req, res) => {

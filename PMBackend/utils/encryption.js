@@ -1,26 +1,40 @@
-const crypto = require('crypto');
-const Buffer = require('buffer');
-const SECRET_KEY = process.env.ENCRYPTION_KEY;  
-const IV_LENGTH = 16;  
+const crypto = require("crypto");
+require("dotenv").config();
+const algorithm = "aes-256-cbc"; 
+console.log(process.env.ENCRYPTION_KEY);
+const key = Buffer.from(process.env.ENCRYPTION_KEY, "hex"); 
 
-// Encrypt function
-const encrypt = (text) => {
-    const iv = crypto.randomBytes(IV_LENGTH);  
-    const cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(SECRET_KEY, 'utf-8'), iv);
-    let encrypted = cipher.update(text, 'utf8', 'hex');
-    encrypted += cipher.final('hex');
-    return iv.toString('hex') + ':' + encrypted;  
-};
+// Encrypt Function
+function encryptPassword(password) {
+    const iv = crypto.randomBytes(16); // Always 16 bytes IV
+    const cipher = crypto.createCipheriv(algorithm, key, iv);
+    let encrypted = cipher.update(password, "utf8", "hex");
+    encrypted += cipher.final("hex");
+    return iv.toString("hex") + ":" + encrypted;
+}
 
-// Decrypt function
-const decrypt = (text) => {
-    const parts = text.split(':');
-    const iv = Buffer.from(parts[0], 'hex');
+// Decrypt Password
+function decryptPassword(encryptedPassword) {
+    const parts = encryptedPassword.split(":");
+    if (parts.length !== 2) {
+        throw new Error("Invalid encrypted password format");
+    }
+
+    const iv = Buffer.from(parts[0], "hex");
     const encryptedText = parts[1];
-    const decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(SECRET_KEY, 'utf-8'), iv);
-    let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    return decrypted;
-};
 
-module.exports = { encrypt, decrypt };
+    if (iv.length !== 16) {
+        throw new Error("Invalid IV length: IV must be 16 bytes long");
+    }
+
+    const decipher = crypto.createDecipheriv(algorithm, key, iv);
+    let decrypted = decipher.update(encryptedText, "hex", "utf8");
+    decrypted += decipher.final("utf8");
+    return decrypted;
+}
+
+
+module.exports = {
+    encryptPassword,
+    decryptPassword
+} 
