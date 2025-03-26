@@ -280,7 +280,7 @@ const Manager = () => {
 
           {/* Table */}
           {/* Unauthorized */}
-          {passwordArray === -1 && <button className="bg-sky-400 flex justify-center items-center hover:bg-sky-300 rounded-md px-1 py-1 gap-1 w-28 h-10"><Link to="/login">Log In</Link></button>}
+          {passwordArray === -1 && <button className="bg-blue-500 hover:bg-blue-600 flex justify-center items-center rounded-md px-1 py-1 gap-1 w-28 h-10"><Link to="/login">Log In</Link></button>}
 
           {/* No passwords */}
           {passwordArray !== null && passwordArray !== -1 && passwordArray.length === 0 && (
