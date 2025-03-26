@@ -192,6 +192,12 @@ const Manager = () => {
         <p className="text-sm text-white text-center m-1">Unlock Security, Forge Trust</p>
         </motion.p>
 
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
         {/* Inputs */}
         <div className="flex flex-col p-4 text-black gap-4 items-center w-full">
       {/* Input 1 */}
@@ -256,13 +262,18 @@ const Manager = () => {
           whileHover={{ scale: 1.1 }}
           className="bg-blue-500 hover:bg-blue-600 rounded-md px-4 py-2 flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 w-24 h-10"
         >
-          <img src="../icons/add2.png" width={20} />
+          <img src="../icons2/add2.png" width={20} />
           Add
         </motion.button>
       </div>
     </div>
+    </motion.div>
 
-
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+      >
         {/* Table to show Passwords */}
         <div className="passwords">
           <h1 className="my-2 mt-10 text-white">Passwords</h1>
@@ -374,6 +385,7 @@ const Manager = () => {
             </div>
           </div>)}
         </div>
+      </motion.div>
       </div>
     </>
   )

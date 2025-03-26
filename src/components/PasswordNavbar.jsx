@@ -110,7 +110,7 @@ const Navbar = () => {
 
         {/* Buttons */}
         <button onClick={handleLogout} className="flex items-center gap-4 bg-blue-500 w-32 p-2 rounded-md hover:bg-blue-600 mt-6">
-          <img src="icons/log-out.png" alt="Logout" className="w-6 h-6" />
+          <img src="icons2/logout.png" alt="Logout" className="w-6 h-6" />
           Log-out
         </button>
       </div>
