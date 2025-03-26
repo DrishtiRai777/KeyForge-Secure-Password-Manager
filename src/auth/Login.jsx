@@ -53,6 +53,7 @@ const Login = () => {
       <div className="absolute top-1/3 left-1/4 w-56 h-56 bg-blue-500 rounded-full filter blur-3xl opacity-25"></div>
       <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-purple-500 rounded-full filter blur-3xl opacity-25"></div>
 
+      {/* Form Contents */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-md">
         <h1 className="text-5xl font-bold text-blue-500 mb-8">Login</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}

@@ -4,17 +4,13 @@ const Contact = () => {
   return (
     <>
       <div className="h-screen bg-black text-white relative flex flex-col items-center justify-center overflow-hidden">
-        {/* Subtle gradient overlay */}
+        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-black opacity-90"></div>
-
-        {/* Glowing blobs effect */}
         <div className="absolute top-1/3 left-1/4 w-56 h-56 bg-blue-500 rounded-full filter blur-3xl opacity-25"></div>
         <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-purple-500 rounded-full filter blur-3xl opacity-25"></div>
-
-        {/* Subtle noise texture */}
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10"></div>
 
-        {/* Contact Content */}
+        {/* Content */}
         <div className="relative z-10 max-w-3xl text-center px-6">
           {/* Title */}
           <motion.h1
@@ -36,7 +32,7 @@ const Contact = () => {
             Need help? Our support team is here to assist you.
           </motion.p>
 
-          {/* Contact Info (No Gray Background) */}
+          {/* Contact Info... */}
           <div className="space-y-4">
             {[
               { icon: "📧", title: "Email", info: "support@keyforge.com" },
@@ -59,7 +55,7 @@ const Contact = () => {
             ))}
           </div>
 
-          {/* Help Center CTA */}
+          {/* Help Center */}
           <motion.div
             className="mt-6"
             initial={{ opacity: 0 }}
@@ -78,7 +74,7 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          {/* Contact Us Button */}
+          {/* Contact Us btn */}
           <motion.button
             className="mt-6 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
             whileHover={{ scale: 1.05 }}

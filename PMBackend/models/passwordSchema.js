@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define schema for passwords
 const passwordSchema = new mongoose.Schema({
   site: { type: String, required: true },
   username: { type: String, required: true },

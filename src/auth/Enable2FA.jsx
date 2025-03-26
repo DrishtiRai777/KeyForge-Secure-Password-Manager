@@ -46,7 +46,7 @@ export default function EnableTOTP() {
             <div className="absolute top-1/3 left-1/4 w-56 h-56 bg-blue-500 rounded-full filter blur-3xl opacity-25"></div>
             <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-purple-500 rounded-full filter blur-3xl opacity-25"></div>
 
-            {/* Content */}
+           {/* Form */}
             <div className="relative z-10 flex flex-col items-center w-full max-w-md">
                 <h2 className="text-5xl font-bold text-blue-500 mb-6">Enable TOTP</h2>
 

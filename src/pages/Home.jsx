@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Home = () => {
@@ -18,26 +19,19 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen bg-black text-white flex items-center justify-center overflow-hidden">
-      {/* Background Gradient */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-black opacity-90"></div>
-
-      {/* Floating Glowing Blobs */}
       <motion.div
         animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-[120px] opacity-40"
       ></motion.div>
-
       <motion.div
         animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
         className="absolute bottom-1/5 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-[120px] opacity-40"
       ></motion.div>
-
-      {/* Starfield Effect */}
       <div className="absolute inset-0 bg-[url('/stars.png')] opacity-10"></div>
-
-      {/* Pulsating Center Glow */}
       <motion.div
         animate={{ scale: [1, 1.2, 1] }}
         transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
@@ -56,17 +50,17 @@ const Home = () => {
           Welcome to Key<span className="text-blue-500">𓂀Forge</span>
         </motion.h1>
 
-        {/* Typing Effect (Tagline) */}
+        {/* Typing Effect*/}
         <motion.p
           className="text-lg text-gray-300 mb-8 max-w-lg mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
         >
-          {text} {/* Displays the animated tagline */}
+          {text} 
         </motion.p>
 
-        {/* Features List */}
+        {/* feat. List */}
         <motion.ul
           className="list-disc text-left text-lg space-y-4 max-w-3xl mx-auto"
           initial={{ opacity: 0 }}
@@ -86,21 +80,21 @@ const Home = () => {
           ))}
         </motion.ul>
 
-        {/* Signup Button (Instead of Duplicate Sign In & Sign Up) */}
+        {/* Signup Button*/}
         <motion.div
           className="mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 4 }}
         >
-          <a href="/register">
+          <Link to="/register">
             <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 transition duration-300 text-white rounded-lg text-lg font-semibold">
               Get Started
             </button>
-          </a>
+          </Link>
         </motion.div>
 
-        {/* Stats Section */}
+        {/* Stats */}
         <motion.div
           className="mt-12 grid grid-cols-3 gap-12 text-white max-w-4xl mx-auto"
           initial={{ opacity: 0 }}

@@ -4,17 +4,13 @@ const About = () => {
   return (
     <>
       <div className="h-screen bg-black text-white relative flex flex-col items-center justify-center overflow-hidden">
-        {/* Subtle gradient overlay */}
+        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-black opacity-90"></div>
-
-        {/* Glowing blobs effect */}
         <div className="absolute top-1/3 left-1/4 w-56 h-56 bg-blue-500 rounded-full filter blur-3xl opacity-25"></div>
         <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-purple-500 rounded-full filter blur-3xl opacity-25"></div>
-
-        {/* Subtle noise texture */}
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10"></div>
 
-        {/* About Content */}
+        {/* Content */}
         <div className="relative z-10 max-w-3xl text-center px-6">
           {/* Title */}
           <motion.h1
@@ -37,7 +33,7 @@ const About = () => {
             We prioritize privacy, encryption, and ease of use to keep your passwords safe.
           </motion.p>
 
-          {/* Core Features */}
+          {/* Feats */}
           <motion.div
             className="grid grid-cols-2 gap-6 text-left text-gray-300"
             initial={{ opacity: 0 }}
@@ -66,7 +62,6 @@ const About = () => {
             ))}
           </motion.div>
 
-          {/* Call-to-Action */}
           <motion.div
             className="mt-8"
             initial={{ opacity: 0 }}

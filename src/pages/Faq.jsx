@@ -10,15 +10,13 @@ const FAQ = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#111827] text-white flex items-center justify-center overflow-hidden">
-      {/* Subtle gradient overlay */}
+      {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-black opacity-90"></div>
-
-        {/* Glowing blobs effect */}
         <div className="absolute top-1/3 left-1/4 w-56 h-56 bg-blue-500 rounded-full filter blur-3xl opacity-25"></div>
         <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-purple-500 rounded-full filter blur-3xl opacity-25"></div>
-
-        {/* Subtle noise texture */}
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10"></div>
+
+
       {/* FAQ Content */}
       <div className="relative z-10 p-10 w-full max-w-6xl bg-opacity-90 rounded-lg">
         {/* Title */}
@@ -72,7 +70,7 @@ const FAQ = () => {
           ].map((faq, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900 rounded-lg p-4 shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+              className="bg-gray-900 rounded-lg p-4 shadow-sm hover:shadow-purple-500/50 transition-all duration-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.5 + index * 0.3 }}
@@ -110,7 +108,7 @@ const FAQ = () => {
           transition={{ duration: 1, delay: 4 }}
         >
           <p className="text-gray-300">
-            Didn’t find the answer you were looking for?{" "}
+            Didn&apos;t find the answer you were looking for?{" "}
             <a href="/contact" className="text-blue-400 hover:underline">
               Contact Us
             </a>

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
+import { motion } from 'framer-motion';
 
 const Manager = () => {
   const ref = useRef()
@@ -112,9 +113,9 @@ const Manager = () => {
       
       toast('Password deleted!', {
         position: "top-right",
-        autoClose: 5000, // Adjust auto-close delay (e.g., 2000ms = 2 seconds)
+        autoClose: 5000, 
         hideProgressBar: false,
-        closeOnClick: true, // Allow closing on click
+        closeOnClick: true, 
         pauseOnHover: true,
         draggable: true,
         theme: "dark",
@@ -165,85 +166,101 @@ const Manager = () => {
 
     {/* Background */}
     <div className="absolute inset-0 bg-gradient-to-br from-[#070c1a] via-[#141c2f] to-[#070a15] opacity-100 z-[-1]"></div>
-
-{/* Enhanced & Larger Blue Blob */}
-<div className="absolute top-[20%] left-[15%] w-[100px] h-[500px] bg-blue-500 rounded-full filter blur-[180px] opacity-55"></div>
-
-{/* Enhanced & Larger Purple Blob */}
-<div className="absolute bottom-[15%] right-[20%] w-[500px] h-[450px] bg-purple-500 rounded-full filter blur-[160px] opacity-50"></div>
+    <div className="absolute top-[20%] left-[15%] w-[100px] h-[500px] bg-blue-500 rounded-full filter blur-[180px] opacity-55"></div>
+    <div className="absolute bottom-[15%] right-[20%] w-[500px] h-[450px] bg-purple-500 rounded-full filter blur-[160px] opacity-50"></div>
 
 
-
-
-
-
-
-    
-
-      <div className="relative mycontainer min-h-screen text-white">
+    <div className="relative mycontainer min-h-screen text-white">
         {/* Title */}
-        <h1 className="text-4xl font-bold text-center">
-          <span>Key</span>
-          <span className="text-blue-500">𓂀Forge</span>
-        </h1>
-          
+        <motion.h1
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}>
+
+            <h1 className="text-4xl font-bold text-center">
+              <span>Key</span>
+              <span className="text-blue-500">𓂀Forge</span>
+            </h1>
+        </motion.h1>
+
+        <motion.p
+            className="mt-2 leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+          >
         <p className="text-sm text-white text-center m-1">Unlock Security, Forge Trust</p>
+        </motion.p>
 
         {/* Inputs */}
-<div className="flex flex-col p-4 text-black gap-4 items-center w-full">
-  {/* Input 1 */}
-  <input 
-    value={form.site} 
-    onChange={handleChange} 
-    placeholder="Enter website URL" 
-    className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 w-full"
-    type="text" 
-    name="site" 
-    id="site" 
-  />
-
-  {/* Input Row (Username + Password + Button) */}
-  <div className="flex w-full gap-6 items-center">
-    {/* Input 2 - Username */}
-    <input 
-      value={form.username} 
-      onChange={handleChange} 
-      placeholder="Enter Username" 
-      className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 flex-1"
-      type="text" 
-      name="username" 
-      id="username" 
-    />
-
-    {/* Input 3 - Password + Eye Icon */}
-    <div className="relative flex-1">
-      <input 
-        ref={passwordRef} 
-        value={form.password} 
-        onChange={handleChange} 
-        placeholder="Enter password" 
-        className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 pr-10 w-full" 
-        type="password" 
-        name="password" 
-        id="password"
+        <div className="flex flex-col p-4 text-black gap-4 items-center w-full">
+      {/* Input 1 */}
+      <motion.input
+        whileFocus={{ scale: 1.05 }}
+        value={form.site}
+        onChange={handleChange}
+        placeholder="Enter website URL"
+        className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 w-full"
+        type="text"
+        name="site"
+        id="site"
       />
 
-      {/* Eye Icon */}
-      <span className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer" onClick={showPassword}>
-        <img ref={ref} src="icons2/eye.png" className="w-6 h-6 opacity-70 hover:opacity-100" alt="eye" />
-      </span>
-    </div>
+      {/* Input -- (Username + Password + Button) */}
+      <div className="flex w-full gap-6 items-center">
+        {/* Input 2 - Username */}
+        <motion.input
+          whileFocus={{ scale: 1.05 }}
+          value={form.username}
+          onChange={handleChange}
+          placeholder="Enter Username"
+          className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 flex-1"
+          type="text"
+          name="username"
+          id="username"
+        />
 
-    {/* Add Button */}
-    <button 
-      onClick={savePassword} 
-      className="bg-blue-500 hover:bg-blue-600 rounded-md px-4 py-2 flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 w-24 h-10"
-    >
-      <img src="../icons/add2.png" width={20} />
-      Add
-    </button>
-  </div>
-</div>
+        {/* Input 3 - Password + Eye Icon */}
+        <div className="relative flex-1">
+          <motion.input
+            whileFocus={{ scale: 1.05 }}
+            ref={passwordRef}
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Enter password"
+            className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 pr-10 w-full"
+            type="password"
+            name="password"
+            id="password"
+          />
+
+          {/* Eye Icon */}
+          <span 
+            className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+            onClick={showPassword}
+          >
+            <motion.img 
+              ref={ref} 
+              src="icons2/eye.png" 
+              className="w-6 h-6 opacity-70 hover:opacity-100" 
+              alt="eye" 
+              whileHover={{ scale: 1.2, rotate: 10 }} // Animate only the image
+              transition={{ type: "spring", stiffness: 300 }} // Smooth effect
+            />
+          </span>
+        </div>
+
+        {/* Add Button */}
+        <motion.button
+          onClick={savePassword}
+          whileHover={{ scale: 1.1 }}
+          className="bg-blue-500 hover:bg-blue-600 rounded-md px-4 py-2 flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 w-24 h-10"
+        >
+          <img src="../icons/add2.png" width={20} />
+          Add
+        </motion.button>
+      </div>
+    </div>
 
 
         {/* Table to show Passwords */}
@@ -259,7 +276,7 @@ const Manager = () => {
             <div className="p-4">No passwords to show</div>
           )}
 
-          {/* Passwords are there! */}
+          {/* Passwords show */}
           {passwordArray !== null && passwordArray !== -1 && passwordArray.length !== 0 && ( 
               <div className="rounded-md overflow-hidden p-[2px] bg-gradient-to-r from-cyan-500 to-blue-500">
              <div className="bg-gradient-to-br from-[#141627] via-[#202142] to-[#3b1e66] rounded-md p-1">
@@ -281,7 +298,15 @@ const Manager = () => {
                     <div className="flex items-center justify-between">
                       <span className="ml-3">{item.site}</span>
                       <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => { copyText(item.site) }}>
-                        <img className="w-5" src="icons2/copy.png" alt="img" />
+                      <motion.img 
+                        src="icons2/copy.png"
+                        className="w-5 opacity-70 hover:opacity-100" 
+                        alt="icon"
+                        whileHover={{ rotate: 10 }}  //tilt
+                        transition={{ type: "spring", stiffness: 300 }}  
+                      />
+
+                        {/* <img className="w-5" src="icons2/copy.png" alt="img" /> */}
                       </button>
                     </div>
                   </td>
@@ -290,7 +315,14 @@ const Manager = () => {
                     <div className="flex items-center justify-between">
                       <span className="ml-3">{item.username}</span>
                       <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => { copyText(item.username) }}>
-                        <img className="w-5" src="icons2/copy.png" alt="img" />
+                        {/* <img className="w-5" src="icons2/copy.png" alt="img" /> */}
+                        <motion.img 
+                        src="icons2/copy.png"
+                        className="w-5 opacity-70 hover:opacity-100" 
+                        alt="icon"
+                        whileHover={{ rotate: 10 }}  //tilt
+                        transition={{ type: "spring", stiffness: 300 }}  
+                      />
                       </button>
                     </div>
                   </td>
@@ -299,17 +331,38 @@ const Manager = () => {
                     <div className="flex items-center justify-between">
                       <span className="ml-3">{'*'.repeat(item.password.length)}</span>
                       <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => { copyText(item.password) }}>
-                        <img className="w-5" src="icons2/copy.png" alt="img" />
+                        {/* <img className="w-5" src="icons2/copy.png" alt="img" /> */}
+                        <motion.img 
+                        src="icons2/copy.png"
+                        className="w-5 opacity-70 hover:opacity-100" 
+                        alt="icon"
+                        whileHover={{ rotate: 10 }}  //tilt
+                        transition={{ type: "spring", stiffness: 300 }}  
+                      />
                       </button>
                     </div>
                   </td>
 
                   <td className="text-center w-1/4 py-3 border text-white">
                     <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => {editPassword(item.id)}}>
-                      <img className="w-5" src="icons2/edit.png" alt="img" />
+                      {/* <img className="w-5" src="icons2/edit.png" alt="img" /> */}
+                      <motion.img 
+                        src="icons2/edit.png"
+                        className="w-5 opacity-70 hover:opacity-100" 
+                        alt="icon"
+                        whileHover={{ rotate: 10 }}  //tilt
+                        transition={{ type: "spring", stiffness: 300 }}  
+                      />
                     </button>
                     <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => {deletePassword(item.id)}}>
-                      <img className="w-5" src="icons2/trash.png" alt="img" />
+                      {/* <img className="w-5" src="icons2/trash.png" alt="img" /> */}
+                      <motion.img 
+                        src="icons2/trash.png"
+                        className="w-5 opacity-70 hover:opacity-100" 
+                        alt="icon"
+                        whileHover={{ rotate: 10 }}  //tilt
+                        transition={{ type: "spring", stiffness: 300 }}  
+                      />
                     </button>
 
                   </td>
