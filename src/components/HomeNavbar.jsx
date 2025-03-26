@@ -11,22 +11,16 @@ const Navbar = () => {
 
       {/* Buttons */}
       <div className="flex space-x-4 ml-auto">
-        <button className="bg-sky-400 font-semibold text-black px-5 py-2 border-2 border-black rounded-lg hover:bg-gray-50">
+        <button className="bg-blue-500 font-semibold text-white px-5 py-2 border-2 border-black rounded-lg hover:bg-blue-600">
           <NavLink 
               to="/register" 
-              className={({ isActive }) => 
-              `hover:text-blue-400 transition ${isActive ? "text-white" : ""}`
-              }
           >
             Sign up
           </NavLink>
         </button>
-        <button className="bg-sky-400 font-semibold text-black px-5 py-2 border-2 border-black rounded-lg">
+        <button className="bg-blue-500 font-semibold text-white px-5 py-2 border-2 border-black rounded-lg hover:bg-blue-600">
           <NavLink 
               to="/login" 
-              className={({ isActive }) => 
-              `hover:text-blue-400 transition ${isActive ? "text-white-500" : ""}`
-              }
           >
             Sign in
           </NavLink>

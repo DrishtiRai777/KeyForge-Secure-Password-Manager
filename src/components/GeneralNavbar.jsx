@@ -13,40 +13,60 @@ const Navbar = () => {
       <ul className="flex space-x-6">
         <NavLink 
           to="/" 
-          className={({ isActive }) => 
-            `hover:text-blue-400 transition ${isActive ? "text-blue-500" : ""}`
+          className={({ isActive }) =>
+            `transition-all duration-200 border-b-2 pb-1 ${
+              isActive
+                ? "text-blue-500 border-blue-500"
+                : "border-transparent hover:text-blue-400 hover:border-blue-400"
+            }`
           }
         >
           Home
         </NavLink>
         <NavLink 
           to="/password" 
-          className={({ isActive }) => 
-            `hover:text-blue-400 transition ${isActive ? "text-blue-500" : ""}`
+          className={({ isActive }) =>
+            `transition-all duration-200 border-b-2 pb-1 ${
+              isActive
+                ? "text-blue-500 border-blue-500"
+                : "border-transparent hover:text-blue-400 hover:border-blue-400"
+            }`
           }
         >
           Passwords
         </NavLink>
         <NavLink 
           to="/about" 
-          className={({ isActive }) => 
-            `hover:text-blue-400 transition ${isActive ? "text-blue-500" : ""}`
+          className={({ isActive }) =>
+            `transition-all duration-200 border-b-2 pb-1 ${
+              isActive
+                ? "text-blue-500 border-blue-500"
+                : "border-transparent hover:text-blue-400 hover:border-blue-400"
+            }`
           }
         >
           About Us
         </NavLink>
         <NavLink 
           to="/contact" 
-          className={({ isActive }) => 
-            `hover:text-blue-400 transition ${isActive ? "text-blue-500" : ""}`
+          className={({ isActive }) =>
+            `transition-all duration-200 border-b-2 pb-1 ${
+              isActive
+                ? "text-blue-500 border-blue-500"
+                : "border-transparent hover:text-blue-400 hover:border-blue-400"
+            }`
           }
         >
           Contact
         </NavLink>
         <NavLink 
           to="/faq" 
-          className={({ isActive }) => 
-            `hover:text-blue-400 transition ${isActive ? "text-blue-500" : ""}`
+          className={({ isActive }) =>
+            `transition-all duration-200 border-b-2 pb-1 ${
+              isActive
+                ? "text-blue-500 border-blue-500"
+                : "border-transparent hover:text-blue-400 hover:border-blue-400"
+            }`
           }
         >
           FAQ

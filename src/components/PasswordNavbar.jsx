@@ -41,7 +41,7 @@ const Navbar = () => {
               }
             >
               <div className="flex items-center gap-4">
-                <img src="icons/home.png" alt="Home" className="w-6 h-6" />
+                <img src="icons2/home.png" alt="Home" className="w-5 h-5" />
                 Home
               </div>
             </NavLink>
@@ -54,7 +54,7 @@ const Navbar = () => {
               }
             >
               <div className="flex items-center gap-4">
-                <img src="icons/pswd.png" alt="Passwords" className="w-6 h-6" />
+                <img src="icons2/passwords.png" alt="Passwords" className="w-6 h-6" />
                 Passwords
               </div>
             </NavLink>
@@ -68,9 +68,9 @@ const Navbar = () => {
             >
               <div className="flex items-center gap-4">
                 <img
-                  src="icons/About Us.png"
+                  src="icons2/About us.png"
                   alt="About Us"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 />
                 About Us
               </div>
@@ -85,7 +85,7 @@ const Navbar = () => {
             >
               <div className="flex items-center gap-4">
                 <img
-                  src="icons/Contact.png"
+                  src="icons2/Contact us.png"
                   alt="Contact"
                   className="w-6 h-6"
                 />
@@ -97,11 +97,11 @@ const Navbar = () => {
             <NavLink
               to="/faq"
               className={({ isActive }) =>
-                isActive ? "text-blue-500 font-bold" : "hover:font-bold"
+                isActive ? "text-blue-500" : "hover:font-bold"
               }
             >
               <div className="flex items-center gap-4">
-                <img src="icons/faq.png" alt="FAQ" className="w-6 h-6" />
+                <img src="icons2/faq.png" alt="FAQ" className="w-6 h-6" />
                 FAQ
               </div>
             </NavLink>
@@ -109,15 +109,10 @@ const Navbar = () => {
         </ul>
 
         {/* Buttons */}
-        <button onClick={handleLogout} className="flex items-center gap-4 bg-sky-400 w-32 p-2 rounded-md hover:bg-sky-300 mt-6">
+        <button onClick={handleLogout} className="flex items-center gap-4 bg-blue-500 w-32 p-2 rounded-md hover:bg-blue-600 mt-6">
           <img src="icons/log-out.png" alt="Logout" className="w-6 h-6" />
           Log-out
         </button>
-
-        <a href="#" className="fixed bottom-14 flex items-center gap-2 bg-sky-400 w-32 h-10 p-2 rounded-md hover:bg-sky-300 text-lg text-center justify-center">
-          <img src="icons/github.png" alt="GitHub" className="w-6 h-6" />
-          GitHub
-        </a>
       </div>
     </nav>
   );

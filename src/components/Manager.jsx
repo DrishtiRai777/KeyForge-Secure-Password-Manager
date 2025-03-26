@@ -38,13 +38,13 @@ const Manager = () => {
     // alert('Hey!');
     passwordRef.current.type = "text"
     console.log(ref.current.src);
-    if(ref.current.src.includes("icons/eyecross.png")) {
-      ref.current.src = "icons/eye.png"
+    if(ref.current.src.includes("icons2/closedEye.png")) {
+      ref.current.src = "icons2/eye.png"
       passwordRef.current.type = "password"
     }
     else {
       passwordRef.current.type = "text"
-      ref.current.src = "icons/eyecross.png"
+      ref.current.src = "icons2/closedEye.png"
     }
   }
 
@@ -164,48 +164,91 @@ const Manager = () => {
 
 
     {/* Background */}
+    <div className="absolute inset-0 bg-gradient-to-br from-[#070c1a] via-[#141c2f] to-[#070a15] opacity-100 z-[-1]"></div>
+
+{/* Enhanced & Larger Blue Blob */}
+<div className="absolute top-[20%] left-[15%] w-[100px] h-[500px] bg-blue-500 rounded-full filter blur-[180px] opacity-55"></div>
+
+{/* Enhanced & Larger Purple Blob */}
+<div className="absolute bottom-[15%] right-[20%] w-[500px] h-[450px] bg-purple-500 rounded-full filter blur-[160px] opacity-50"></div>
+
+
+
+
+
+
+
     
 
-      <div className="mycontainer min-h-screen bg-gradient-to-br from-black via-[#1a1a2e] to-[#16213e] text-white">
+      <div className="relative mycontainer min-h-screen text-white">
         {/* Title */}
         <h1 className="text-4xl font-bold text-center">
           <span>Key</span>
           <span className="text-blue-500">𓂀Forge</span>
         </h1>
           
-        <p className="text-sm text-slate-500 text-center m-1">Unlock Security, Forge Trust</p>
+        <p className="text-sm text-white text-center m-1">Unlock Security, Forge Trust</p>
 
         {/* Inputs */}
-        <div className="flex flex-col p-4 text-black gap-8 items-center">
-          {/* Input 1 */}
-          <input value={form.site} onChange={handleChange} placeholder="Enter website URL" className="rounded-lg border-2 border-slate-500 w-full p-4 py-1" type="text" name="site" id="site" />
-          <div className="flex w-full justify-between gap-8">
-            <div>
-            {/* Input 2 */}
-            <input value={form.username} onChange={handleChange} placeholder="Enter Username" className="rounded-lg border-2 border-slate-500 w-34 p-4 py-1" type="text" name="username" id="username" />
-            </div>
-            <div>
-              {/* Input 3 */}
-              <input ref={passwordRef} value={form.password} onChange={handleChange} placeholder="Enter password" className="rounded-lg border-2 border-slate-500 w-25 p-4 py-1" type="password" name="password" id="password"/>
+<div className="flex flex-col p-4 text-black gap-4 items-center w-full">
+  {/* Input 1 */}
+  <input 
+    value={form.site} 
+    onChange={handleChange} 
+    placeholder="Enter website URL" 
+    className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 w-full"
+    type="text" 
+    name="site" 
+    id="site" 
+  />
 
-              {/* Eye - image */}
-              <span className="absolute -translate-x-11 cursor-pointer" onClick={showPassword}>
-                <img ref={ref} src="icons/eye.png" className="p-1 w-8 h-8" alt="eye" />
-              </span>
+  {/* Input Row (Username + Password + Button) */}
+  <div className="flex w-full gap-6 items-center">
+    {/* Input 2 - Username */}
+    <input 
+      value={form.username} 
+      onChange={handleChange} 
+      placeholder="Enter Username" 
+      className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 flex-1"
+      type="text" 
+      name="username" 
+      id="username" 
+    />
 
-            </div>
+    {/* Input 3 - Password + Eye Icon */}
+    <div className="relative flex-1">
+      <input 
+        ref={passwordRef} 
+        value={form.password} 
+        onChange={handleChange} 
+        placeholder="Enter password" 
+        className="bg-transparent border-b-2 border-blue-500 focus:outline-none text-white text-lg p-2 pr-10 w-full" 
+        type="password" 
+        name="password" 
+        id="password"
+      />
 
-            <div>
-              <button onClick={savePassword} className="bg-sky-400 flex justify-center items-center hover:bg-sky-300 rounded-md px-1 py-1 gap-1 w-28 h-10">
-                <img src="../icons/add2.png" width={32}/>
-              Add </button>
-            </div>
-          </div>
-        </div>
+      {/* Eye Icon */}
+      <span className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer" onClick={showPassword}>
+        <img ref={ref} src="icons2/eye.png" className="w-6 h-6 opacity-70 hover:opacity-100" alt="eye" />
+      </span>
+    </div>
+
+    {/* Add Button */}
+    <button 
+      onClick={savePassword} 
+      className="bg-blue-500 hover:bg-blue-600 rounded-md px-4 py-2 flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 w-24 h-10"
+    >
+      <img src="../icons/add2.png" width={20} />
+      Add
+    </button>
+  </div>
+</div>
+
 
         {/* Table to show Passwords */}
         <div className="passwords">
-          <h1 className="my-2 mt-10 text-slate-500">Passwords</h1>
+          <h1 className="my-2 mt-10 text-white">Passwords</h1>
 
           {/* Table */}
           {/* Unauthorized */}
@@ -218,9 +261,11 @@ const Manager = () => {
 
           {/* Passwords are there! */}
           {passwordArray !== null && passwordArray !== -1 && passwordArray.length !== 0 && ( 
-              <div className="rounded-md overflow-hidden border-2 ">
-              <table className="table-auto w-full rounded-md border">
-              <thead className="text-center">
+              <div className="rounded-md overflow-hidden p-[2px] bg-gradient-to-r from-cyan-500 to-blue-500">
+             <div className="bg-gradient-to-br from-[#141627] via-[#202142] to-[#3b1e66] rounded-md p-1">
+
+                <table className="table-auto w-full rounded-md border border-transparent">
+                <thead className="text-center">
                 <tr>
                   <th className="py-3 font-normal">Website</th>
                   <th className="py-3 font-normal">Username</th>
@@ -235,8 +280,8 @@ const Manager = () => {
                     <td className="py-2 border text-center text-white" >
                     <div className="flex items-center justify-between">
                       <span className="ml-3">{item.site}</span>
-                      <button className="mx-4 hover:bg-cyan-100 rounded-md align-middle" onClick={() => { copyText(item.site) }}>
-                        <img className="w-5" src="icons/icons8-copy-30 (1).png" alt="img" />
+                      <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => { copyText(item.site) }}>
+                        <img className="w-5" src="icons2/copy.png" alt="img" />
                       </button>
                     </div>
                   </td>
@@ -244,8 +289,8 @@ const Manager = () => {
                   <td className="py-2 border text-center text-white" >
                     <div className="flex items-center justify-between">
                       <span className="ml-3">{item.username}</span>
-                      <button className="mx-4 hover:bg-cyan-100 rounded-md align-middle" onClick={() => { copyText(item.username) }}>
-                        <img className="w-5" src="icons/icons8-copy-30 (1).png" alt="img" />
+                      <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => { copyText(item.username) }}>
+                        <img className="w-5" src="icons2/copy.png" alt="img" />
                       </button>
                     </div>
                   </td>
@@ -253,18 +298,18 @@ const Manager = () => {
                   <td className="py-2 border text-center text-white" >
                     <div className="flex items-center justify-between">
                       <span className="ml-3">{'*'.repeat(item.password.length)}</span>
-                      <button className="mx-4 hover:bg-cyan-100 rounded-md align-middle" onClick={() => { copyText(item.password) }}>
-                        <img className="w-5" src="icons/icons8-copy-30 (1).png" alt="img" />
+                      <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => { copyText(item.password) }}>
+                        <img className="w-5" src="icons2/copy.png" alt="img" />
                       </button>
                     </div>
                   </td>
 
                   <td className="text-center w-1/4 py-3 border text-white">
-                    <button className="mx-4 hover:bg-cyan-100 rounded-md align-middle" onClick={() => {editPassword(item.id)}}>
-                      <img className="w-5" src="icons/icons8-edit-30.png" alt="img" />
+                    <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => {editPassword(item.id)}}>
+                      <img className="w-5" src="icons2/edit.png" alt="img" />
                     </button>
-                    <button className="mx-4 hover:bg-cyan-100 rounded-md align-middle" onClick={() => {deletePassword(item.id)}}>
-                      <img className="w-5" src="icons/icons8-trash-24.png" alt="img" />
+                    <button className="mx-4 hover:bg-black rounded-md align-middle" onClick={() => {deletePassword(item.id)}}>
+                      <img className="w-5" src="icons2/trash.png" alt="img" />
                     </button>
 
                   </td>
@@ -273,6 +318,7 @@ const Manager = () => {
                 
               </tbody>
             </table>
+            </div>
           </div>)}
         </div>
       </div>
