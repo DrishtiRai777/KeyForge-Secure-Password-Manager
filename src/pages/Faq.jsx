@@ -21,7 +21,7 @@ const FAQ = () => {
       <div className="relative z-10 p-10 w-full max-w-6xl bg-opacity-90 rounded-lg">
         {/* Title */}
         <motion.h1
-          className="text-4xl font-extrabold text-blue-400 text-center"
+          className="text-5xl font-bold text-blue-400 text-center"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
@@ -45,7 +45,7 @@ const FAQ = () => {
             {
               question: "How does KeyForge keep my passwords secure?",
               answer:
-                "We use AES-256 encryption to ensure your passwords are securely stored. Only you can decrypt your data, and we never store your master password.",
+                "We use strong encryption to securely store your passwords. Your data is encrypted before being saved and decrypted only when you access it.",
             },
             {
               question: "What is Two-Factor Authentication (2FA)?",
@@ -65,7 +65,7 @@ const FAQ = () => {
             {
               question: "Can I store other sensitive information in KeyForge?",
               answer:
-                "Yes, besides passwords, you can securely store notes, credit card details, and other confidential data.",
+                "No, KeyForge is designed exclusively as a password manager. We recommend using dedicated solutions for storing other types of sensitive data.",
             },
           ].map((faq, index) => (
             <motion.div

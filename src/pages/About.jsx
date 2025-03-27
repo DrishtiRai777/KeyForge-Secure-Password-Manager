@@ -41,8 +41,8 @@ const About = () => {
             transition={{ duration: 1, delay: 1 }}
           >
             {[
-              { title: "🔒 AES-256 Encryption", desc: "Top-tier security to keep your credentials safe." },
-              { title: "🚀 Zero-Knowledge", desc: "Only you can access your data—no one else." },
+              { title: "🔒 Strong Encryption", desc: "Top-tier security to keep your credentials safe." },
+              { title: "🚀 Built for You", desc: "Stay in control of your passwords with secure and seamless management." },
               { title: "🛡️ TOTP-Based Recovery", desc: "Extra security with two-factor authentication." },
               { title: "✨ User-Friendly", desc: "A seamless experience for managing passwords." }
             ].map((item, index) => (

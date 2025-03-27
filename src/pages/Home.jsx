@@ -67,7 +67,7 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
         >
-          {["End-to-End Encryption", "Two-Factor Authentication (2FA)", "User-Friendly Interface", "Secure Login with JWT", "Save unlimited Passwords"].map((feature, i) => (
+          {["Strong Encryption", "Two-Factor Authentication (2FA)", "User-Friendly Interface", "Secure Login with JWT", "Store unlimited Passwords"].map((feature, i) => (
             <motion.li
               key={i}
               className="transition-transform duration-500 hover:translate-x-2"
